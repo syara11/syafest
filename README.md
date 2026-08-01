@@ -1,92 +1,71 @@
-# SyaFest — Event Management Platform
+# SyaFest
 
-A multi-page Next.js application for discovering community events (concerts,
-workshops, meetups, markets) around Malang & Batu. Built as a course project
-to demonstrate functional components, props, `useState`/`useEffect`,
-file-based routing, component reusability, and API integration.
+A web app for finding community events (concerts, workshops, meetups, night markets) around Malang & Batu. This is a college project I built to practice React/Next.js — everything from component reusability and routing to actual API integration and real auth with Firebase.
 
-## Project overview
+## About this project
 
-SyaFest lists local events with a category filter, a searchable-by-browsing
-event grid, and a detail page per event. Event data is served from a local
-Next.js API route (acting as a lightweight backend) backed by a JSON file,
-so the app runs fully offline with no external services required.
+At its core, SyaFest is an event listing app. There's a category filter, a detail page for each event, and now a full login/register system too. Event data still comes from a local JSON file (not a real database) — that's intentional, so the app can run without needing a full backend setup, but it's still served through a proper Next.js API route instead of just importing the JSON straight into components.
 
-**Pages**
-| Route | Description |
-|---|---|
-| `/` | Home page — hero section + preview of 3 upcoming events |
-| `/about` | About page — project story, values, stats |
-| `/contact` | Contact page with a validated form, submitted to an API route |
-| `/events` | Dynamic listing page — all events with category filter |
-| `/events/[id]` | Dynamic detail page — full info for a single event |
-| `/register` | Create an account (Firebase Authentication) |
-| `/login` | Log in to an existing account (Firebase Authentication) |
+**Pages:**
+- `/` — home, shows the 3 closest upcoming events
+- `/about` — a short story about SyaFest
+- `/contact` — contact form, with validation
+- `/events` — all events, filterable by category
+- `/events/[id]` — single event detail
+- `/register` & `/login` — auth powered by Firebase
 
-**Reusable components** (`/components`)
-- `Header` / `Footer` — site chrome, shared via `Layout`
-- `EventCard` — ticket-stub styled card used on Home and Events pages
-- `ContactForm` — controlled form with client + server-side validation
-- `StateNotice` — `Loading`, `ErrorNotice`, `EmptyNotice` for async states
+**Components I reused across pages:**
+- `Header` & `Footer` — mounted once in `Layout`, shows up on every page
+- `EventCard` — the torn-ticket-stub styled card, used on both home & events
+- `ContactForm` — its own form component, validated on both client and server
+- `StateNotice` — handles loading/error/empty states so I'm not rewriting the same conditionals everywhere
 
-## Technologies used
+## Stack
 
-- [Next.js](https://nextjs.org/) 16 (Pages Router, file-based routing)
-- React 19 (functional components, `useState`, `useEffect`)
-- Next.js API Routes (`/pages/api`) as a mock backend
-- Firebase Authentication (email/password) + Firestore
-- CSS Modules (no UI framework — custom design tokens in `globals.css`)
-- Local JSON as the data source (`/data/events.json`)
+- Next.js 16 (Pages Router — still using `pages/`, haven't migrated to App Router)
+- React 19, all functional components, using `useState` & `useEffect`
+- Next.js API Routes acting as a makeshift backend
+- Firebase Auth + Firestore for login/register
+- Plain CSS Modules, no Tailwind or UI library
 
-## How to run the project locally
+## Running it locally
 
 ```bash
-# 1. Install dependencies
 npm install
-
-# 2. Set up Firebase
-# Copy .env.local.example to .env.local and fill in your Firebase project's
-# config values (Firebase Console → Project settings → Your apps).
-cp .env.local.example .env.local
-
-# 3. Run the development server
-npm run dev
-
-# 4. Open the app
-# http://localhost:3000
 ```
 
-To build and run a production version instead:
+Then set up Firebase — copy `.env.local.example` to `.env.local` and fill it in with your own Firebase project's config (grab it from Firebase Console → Project Settings → Your apps):
 
+```bash
+cp .env.local.example .env.local
+```
+
+Then run:
+
+```bash
+npm run dev
+```
+
+Open `localhost:3000`.
+
+To try the production build instead:
 ```bash
 npm run build
 npm start
 ```
 
-## GitHub repository
+## Repo
 
-<!-- Replace with your actual repo link after you push this project -->
-https://github.com/<your-username>/syafest-event-management
+https://github.com/syara11/syafest
 
-## Notes on API integration
+## About the API
 
-`/pages/api/events.js` simulates a real backend: it accepts `?category=` and
-`?id=` query params, adds a short artificial delay, and returns proper HTTP
-status codes (`404` for a missing event, `405` for a wrong method). The
-frontend consumes this with `fetch`, and every data page (`/`, `/events`,
-`/events/[id]`) implements explicit **loading**, **error**, and **empty**
-states rather than assuming the request always succeeds.
+`/api/events` isn't just dumping raw JSON — it handles `?category=` and `?id=` for filtering/detail, adds a small artificial delay so the loading state is actually visible (otherwise the fetch resolves too fast and the spinner never shows up while testing), and returns proper status codes (404 when an event isn't found, etc). Every page that pulls data also handles all three states — loading, error, and empty — instead of assuming the fetch always succeeds.
 
-`/pages/api/contact.js` validates the contact form server-side (required
-fields + email format) before returning a success message, demonstrating a
-full request/response cycle beyond just reading data.
+`/api/contact` is validated server-side too, not just on the form.
 
-## Notes on Firebase Authentication
+## About Firebase
 
-`contexts/AuthContext.js` wraps the whole app (see `pages/_app.js`) and
-exposes `register`, `login`, `logout`, and the current `user` via a
-`useAuth()` hook. On register, a matching profile document is written to
-the Firestore `users` collection (`lib/firebase.js` initializes both
-Firebase Auth and Firestore). The header switches between "Log in / Sign up"
-and the user's name + "Log out" based on live auth state via
-`onAuthStateChanged`.
+All the auth logic lives in one place: `contexts/AuthContext.js`. It handles register, login, logout, and keeps track of who's currently logged in, and gets used through `useAuth()` in whatever component needs it. On register, besides creating the Firebase Auth account, I also save the profile data (name, email) to a Firestore `users` collection — so if I ever need to show more user info later, I can just query it from there.
+
+The header switches its layout automatically based on login state — that runs through Firebase's `onAuthStateChanged`, so it's real-time and doesn't need a manual refresh.

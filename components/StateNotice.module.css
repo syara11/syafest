@@ -1,0 +1,42 @@
+.notice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 64px 20px;
+  text-align: center;
+  color: var(--paper-dim);
+}
+
+.spinner {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2.5px solid var(--line);
+  border-top-color: var(--gold);
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.error p {
+  color: var(--danger);
+}
+
+.retry {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold-soft);
+  padding: 8px 20px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.retry:hover {
+  background: rgba(170, 211, 30, 0.1);
+}

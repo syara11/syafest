@@ -1,0 +1,133 @@
+.card {
+  display: block;
+  background: var(--ink-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.18s ease, border-color 0.18s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(170, 211, 30, 0.45);
+}
+
+.image {
+  height: 160px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 12px;
+}
+
+.category {
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(64, 62, 42, 0.8);
+  backdrop-filter: blur(4px);
+  color: var(--gold-soft);
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(170, 211, 30, 0.4);
+}
+
+.stub {
+  display: flex;
+  align-items: stretch;
+}
+
+.dateBlock {
+  flex-shrink: 0;
+  width: 68px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 8px;
+  font-family: var(--font-mono);
+  background: rgba(159, 117, 96, 0.22);
+}
+
+.day {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--paper);
+}
+
+.month {
+  font-size: 0.7rem;
+  color: var(--gold-soft);
+  letter-spacing: 0.05em;
+}
+
+.perforation {
+  width: 0;
+  border-left: 1.5px dashed rgba(243, 239, 230, 0.25);
+  margin: 12px 0;
+  position: relative;
+}
+
+.perforation::before,
+.perforation::after {
+  content: "";
+  position: absolute;
+  left: -7px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+
+.perforation::before {
+  top: -12px;
+}
+
+.perforation::after {
+  bottom: -12px;
+}
+
+.info {
+  flex: 1;
+  min-width: 0;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.title {
+  font-size: 1.05rem;
+  color: var(--paper);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.location {
+  font-size: 0.85rem;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-size: 0.8rem;
+}
+
+.price {
+  font-family: var(--font-mono);
+  color: var(--teal);
+}
+
+.seats {
+  color: var(--paper-dim);
+}
+
+.seatsLow {
+  color: var(--danger);
+}

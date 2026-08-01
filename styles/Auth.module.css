@@ -1,0 +1,108 @@
+.section {
+  padding: 72px 28px 96px;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: var(--ink-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 36px 32px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  color: var(--gold-soft);
+  margin-bottom: 14px;
+}
+
+.title {
+  font-size: 1.6rem;
+  color: var(--paper);
+  margin-bottom: 8px;
+}
+
+.sub {
+  font-size: 0.9rem;
+  margin-bottom: 28px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 0.82rem;
+  color: var(--paper-dim);
+}
+
+.field input {
+  background: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 11px 14px;
+  color: var(--paper);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+}
+
+.field input:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.submit {
+  margin-top: 6px;
+  background: var(--gold);
+  color: var(--ink);
+  border: none;
+  border-radius: 999px;
+  padding: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+.submit:hover:not(:disabled) {
+  background: var(--gold-soft);
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.errorMsg {
+  color: var(--danger);
+  font-size: 0.86rem;
+}
+
+.switch {
+  margin-top: 22px;
+  font-size: 0.88rem;
+  text-align: center;
+}
+
+.switch a {
+  color: var(--gold-soft);
+  border-bottom: 1px solid var(--gold-soft);
+}
+
+.switch a:hover {
+  color: var(--gold);
+}

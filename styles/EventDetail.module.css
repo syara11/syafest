@@ -1,0 +1,142 @@
+.back {
+  padding: 28px 28px 0;
+  font-size: 0.88rem;
+  color: var(--paper-dim);
+}
+
+.back a:hover {
+  color: var(--gold-soft);
+}
+
+.notFound {
+  padding: 96px 28px;
+  text-align: center;
+}
+
+.notFound h1 {
+  color: var(--paper);
+  margin-bottom: 12px;
+}
+
+.backCta {
+  display: inline-block;
+  margin-top: 20px;
+  color: var(--gold-soft);
+  border-bottom: 1px solid var(--gold-soft);
+}
+
+.article {
+  padding: 20px 28px 96px;
+}
+
+.hero {
+  height: 320px;
+  border-radius: var(--radius);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  padding: 20px;
+  margin-bottom: 40px;
+}
+
+.category {
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: rgba(64, 62, 42, 0.8);
+  backdrop-filter: blur(4px);
+  color: var(--gold-soft);
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(170, 211, 30, 0.4);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.title {
+  font-size: clamp(1.8rem, 3.6vw, 2.4rem);
+  color: var(--paper);
+  margin-bottom: 16px;
+}
+
+.summary {
+  font-size: 1.05rem;
+  color: var(--paper);
+  margin-bottom: 20px;
+}
+
+.description {
+  font-size: 0.96rem;
+  max-width: 62ch;
+}
+
+.ticket {
+  background: var(--ink-soft);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  position: sticky;
+  top: 92px;
+}
+
+.ticketRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  padding: 10px 0;
+}
+
+.ticketRow span {
+  color: var(--paper-dim);
+}
+
+.ticketRow strong {
+  color: var(--paper);
+  font-weight: 500;
+  text-align: right;
+}
+
+.price {
+  color: var(--teal) !important;
+  font-family: var(--font-mono);
+}
+
+.perforation {
+  border-top: 1.5px dashed rgba(243, 239, 230, 0.25);
+  margin: 8px 0;
+}
+
+.reserve {
+  width: 100%;
+  margin-top: 20px;
+  background: var(--gold);
+  color: var(--ink);
+  border: none;
+  border-radius: 999px;
+  padding: 13px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.reserve:hover {
+  background: var(--gold-soft);
+}
+
+@media (max-width: 860px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .ticket {
+    position: static;
+  }
+}

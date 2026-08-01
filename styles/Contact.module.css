@@ -1,0 +1,59 @@
+.section {
+  padding: 80px 28px 96px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  color: var(--gold-soft);
+  margin-bottom: 18px;
+}
+
+.title {
+  font-size: clamp(1.8rem, 3.6vw, 2.3rem);
+  color: var(--paper);
+  margin-bottom: 18px;
+}
+
+.body {
+  max-width: 46ch;
+  margin-bottom: 32px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.info div {
+  display: flex;
+  gap: 10px;
+  font-size: 0.92rem;
+}
+
+.info dt {
+  color: var(--paper-dim);
+  width: 70px;
+  flex-shrink: 0;
+}
+
+.info dd {
+  margin: 0;
+  color: var(--paper);
+}
+
+@media (max-width: 800px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
